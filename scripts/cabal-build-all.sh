@@ -1,20 +1,24 @@
 #!/usr/bin/env bash
+set +x
+# executes cabal build all
+# parses executables created from compiler output and copies it to ~./cabal/bin folder.
 
-GIT_COMMIT_TO_BUILD=${VERSION} # can be a tag/branch
-BINARIES_OUTPUT_DIR=${HOME}/.local/bin && mkdir -p ${BINARIES_OUTPUT_DIR}
+# executes cabal build all
+# parses executables created from compiler output and copies it to ~./cabal/bin folder.
+source /root/.ghcup/env
 
-# Install nix
-curl -L https://nixos.org/nix/install > install-nix.sh 
-chmod +x install-nix.sh 
-./install-nix.sh 
-. ${HOME}/.nix-profile/etc/profile.d/nix.sh 
+export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"
+export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"
 
-# Clone source repository
-git clone https://github.com/input-output-hk/cardano-node.git
-cd cardano-node
-git checkout ${GIT_COMMIT_TO_BUILD}
+git clone https://github.com/input-output-hk/cardano-node.git && cd cardano-node
+git fetch --all --recurse-submodules --tags
+git checkout tags/$VERSION
 
-# Build using NixOS
+cabal configure --with-compiler=ghc-8.10.4
 
-nix-build -A scripts.${BUILD_TARGETS} -o node-local
-./node-local/bin/cardano-node-mainnet
+echo "Running cabal update to ensure you're on latest dependencies.."
+echo "Building..."
+cabal build $PACKAGES 2>&1 | tee /tmp/build.log
+
+cp -p "$(./scripts/bin-path.sh cardano-node)" $HOME/.local/bin/
+cp -p "$(./scripts/bin-path.sh cardano-cli)" $HOME/.local/bin/

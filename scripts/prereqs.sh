@@ -1,15 +1,30 @@
 #!/usr/bin/env bash
 set +x
-apt-get update 
-apt-get install -y curl xz-utils git sudo
+apt-get update -y
+apt-get install curl automake build-essential pkg-config libffi-dev libgmp-dev libssl-dev libtinfo-dev libsystemd-dev zlib1g-dev make g++ tmux git jq wget libncursesw5 libtool autoconf -y
 
-adduser --disabled-password --gecos '' builder 
-echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers 
-adduser builder sudo 
-chown -R builder:builder /home/builder/.*
+wget https://downloads.haskell.org/~cabal/cabal-install-3.4.0.0/cabal-install-3.4.0.0-x86_64-ubuntu-16.04.tar.xz
+tar -xf cabal-install-3.4.0.0-x86_64-ubuntu-16.04.tar.xz
+rm cabal-install-3.4.0.0-x86_64-ubuntu-16.04.tar.xz
+mkdir -p $HOME/.local/bin
+mv cabal $HOME/.local/bin/
 
-mkdir -p /etc/nix
-cat <<EOF | sudo tee /etc/nix/nix.conf
-substituters = https://cache.nixos.org https://hydra.iohk.io
-trusted-public-keys = iohk.cachix.org-1:DpRUyj7h7V830dp/i6Nti+NEO2/nhblbov/8MW7Rqoo= hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ= cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
-EOF
+export PATH="~/.local/bin:$PATH"
+
+cabal update && cabal --version
+
+curl -s -m 60 --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sed -e 's#read.*#answer=Y;next_answer=P;hls_answer=N#' | bash
+
+source /root/.ghcup/env
+ghcup install ghc 8.10.4
+ghcup install cabal 3.4.0.0
+ghcup set ghc 8.10.4
+ghcup set cabal 3.4.0.0
+
+mkdir -p ~/src
+
+git clone https://github.com/input-output-hk/libsodium && cd libsodium
+git checkout 66f017f1
+./autogen.sh
+./configure && make
+make install
