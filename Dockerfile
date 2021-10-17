@@ -1,10 +1,12 @@
 FROM debian
 
 ENV \
-DEBIAN_FRONTEND=noninteractive \
-LANG=C.UTF-8 \
-ENV=/etc/profile \
-USER=builder 
+    DEBIAN_FRONTEND=noninteractive \
+    LANG=C.UTF-8 \
+    ENV=/etc/profile \
+    USER=builder \
+    CNODE_HOME=/opt/cardano/cnode \
+    CARDANO_NODE_SOCKET_PATH=$CNODE_HOME/sockets/node0.socket
 
 WORKDIR /
 
@@ -20,14 +22,20 @@ RUN adduser --disabled-password --gecos '' builder \
 USER builder
 WORKDIR /home/builder
 
-# Install NIX 
-RUN curl -L https://nixos.org/nix/install > install-nix.sh \
-    && chmod +x install-nix.sh \
-    && ./install-nix.sh 
 
 COPY . .
 
-RUN . ./.nix-profile/etc/profile.d/nix.sh \
-    &&  nix-build -A scripts.mainnet.node -o mainnet-node-local \
-    && ./mainnet-node-local/bin/cardano-node-mainnet
-    
+# ENTRY SCRIPT
+
+ADD ./docker/node/addons/banner.txt /home/guild/.scripts/
+ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/docker/node/addons/guild-topology.sh /home/guild/.scripts/
+ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/docker/node/addons/block_watcher.sh /home/guild/.scripts/
+ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/docker/node/addons/healthcheck.sh /home/guild/.scripts/
+ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/docker/node/addons/entrypoint.sh ./
+
+RUN sudo chown -R builder:builder $CNODE_HOME/* \
+    && sudo chown -R builder:builder /home/builder/.* \
+    && sudo chmod a+x /home/builder/.scripts/*.sh /opt/cardano/cnode/scripts/*.sh /home/builder/entrypoint.sh 
+
+HEALTHCHECK --start-period=5m --interval=5m --timeout=100s CMD /home/builder/.scripts/healthcheck.sh
+
