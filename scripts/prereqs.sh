@@ -15,7 +15,7 @@ cabal update && cabal --version
 
 curl -s -m 60 --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sed -e 's#read.*#answer=Y;next_answer=P;hls_answer=N#' | bash
 
-source /root/.ghcup/env
+source /tekton/home/.ghcup/env
 ghcup install ghc 8.10.4
 ghcup install cabal 3.4.0.0
 ghcup set ghc 8.10.4

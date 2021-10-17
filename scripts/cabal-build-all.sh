@@ -5,7 +5,7 @@ set +x
 
 # executes cabal build all
 # parses executables created from compiler output and copies it to ~./cabal/bin folder.
-source /root/.ghcup/env
+source /tekton/home/.ghcup/env
 
 export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"
 export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"
