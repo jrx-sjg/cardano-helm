@@ -1,12 +1,5 @@
 #!/usr/bin/env bash
 
-adduser --disabled-password --gecos '' builder 
-echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers 
-adduser builder sudo 
-chown -R builder:builder /home/builder/.*
-
-su builder
-
 GIT_COMMIT_TO_BUILD=1.30.1 # can be a tag/branch
 BINARIES_OUTPUT_DIR=${HOME}/.local/bin && mkdir -p ${BINARIES_OUTPUT_DIR}
 
