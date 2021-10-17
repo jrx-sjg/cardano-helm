@@ -13,7 +13,7 @@ spec:
         stepTemplate:
           env:
           - name: BUILD_TARGETS
-            value: "cardano-cli cardano-node"
+            value: "mainnet.node"
           - name: ENVIRONMENT
             value: cardano-node    
           image: uses:jaraxasoftware/jaraxa-pipeline-catalog/tasks/haskell-cabal/release.yaml@versionStream

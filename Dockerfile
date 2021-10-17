@@ -22,15 +22,14 @@ RUN adduser --disabled-password --gecos '' builder \
 USER builder
 WORKDIR /home/builder
 
-
-COPY . .
+COPY ./node-local/bin/* /home/builder/.cabal/bin/
 
 # ENTRY SCRIPT
 
-ADD ./docker/node/addons/banner.txt /home/guild/.scripts/
-ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/docker/node/addons/guild-topology.sh /home/guild/.scripts/
-ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/docker/node/addons/block_watcher.sh /home/guild/.scripts/
-ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/docker/node/addons/healthcheck.sh /home/guild/.scripts/
+ADD ./docker/node/addons/banner.txt /home/builder/.scripts/
+ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/docker/node/addons/guild-topology.sh /home/builder/.scripts/
+ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/docker/node/addons/block_watcher.sh /home/builder/.scripts/
+ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/docker/node/addons/healthcheck.sh /home/builder/.scripts/
 ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/docker/node/addons/entrypoint.sh ./
 
 RUN sudo chown -R builder:builder $CNODE_HOME/* \
@@ -38,4 +37,3 @@ RUN sudo chown -R builder:builder $CNODE_HOME/* \
     && sudo chmod a+x /home/builder/.scripts/*.sh /opt/cardano/cnode/scripts/*.sh /home/builder/entrypoint.sh 
 
 HEALTHCHECK --start-period=5m --interval=5m --timeout=100s CMD /home/builder/.scripts/healthcheck.sh
-

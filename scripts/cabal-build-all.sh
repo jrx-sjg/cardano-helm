@@ -15,9 +15,6 @@ cd cardano-node
 git checkout ${GIT_COMMIT_TO_BUILD}
 
 # Build using NixOS
-for target in ${BUILD_TARGETS}
-do
-  cp -a \
-    $(nix-build -A ${target} --option binary-caches https://iohk-nix-cache.s3-eu-central-1.amazonaws.com/)/bin/${target} \
-    ${BINARIES_OUTPUT_DIR}/${target}
-done
+
+nix-build -A scripts.${BUILD_TARGETS} -o node-local
+./node-local/bin/
