@@ -22,7 +22,7 @@ RUN adduser --disabled-password --gecos '' builder \
 USER builder
 WORKDIR /home/builder
 
-COPY ./node-local/bin/* /home/builder/.cabal/bin/
+COPY ./src/bin/* ~/.cabal/bin/
 
 # ENTRY SCRIPT
 

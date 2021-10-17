@@ -20,5 +20,10 @@ echo "Running cabal update to ensure you're on latest dependencies.."
 echo "Building..."
 cabal build $PACKAGES 2>&1 | tee /tmp/build.log
 
-cp -p "$(./scripts/bin-path.sh cardano-node)" $HOME/.local/bin/
-cp -p "$(./scripts/bin-path.sh cardano-cli)" $HOME/.local/bin/
+grep "^Linking" /tmp/build.log | grep -Ev 'test|golden|demo' | while read -r line ; do
+    act_bin_path=$(echo "$line" | awk '{print $2}')
+    act_bin=$(echo "$act_bin_path" | awk -F "/" '{print $NF}')
+    echo "Copying $act_bin to ./src/bin/"
+    mkdir -p ./src/bin/
+    cp -f "$act_bin_path" "./src/bin/"
+done

@@ -12,11 +12,11 @@ spec:
         metadata: {}
         stepTemplate:
           env:
-          - name: BUILD_TARGETS
-            value: "mainnet.node"
+          - name: PACKAGES
+            value: all
           - name: ENVIRONMENT
             value: cardano-node    
-          image: uses:jaraxasoftware/jaraxa-pipeline-catalog/tasks/haskell-cabal/release.yaml@versionStream
+          image: uses:jenkins-x/jx3-pipeline-catalog/tasks/docker-helm/release.yaml@versionStream
           name: ""
           resources:
             requests:
@@ -24,7 +24,7 @@ spec:
               memory: 512Mi
           workingDir: /workspace/source
         steps:
-        - image: uses:jaraxasoftware/jaraxa-pipeline-catalog/tasks/git-clone/git-clone-pr.yaml@versionStream
+        - image: uses:jenkins-x/jx3-pipeline-catalog/tasks/git-clone/git-clone-pr.yaml@versionStream
           name: ""
           resources: {}        
         - name: jx-variables
@@ -35,7 +35,7 @@ spec:
             #!/bin/bash
             source .jx/variables.sh
             ./scripts/prereqs.sh
-            su -c './scripts/cabal-build-all.sh' builder
+            ./scripts/cabal-build-all.sh
         - name: check-registry
           resources: {}
         - name: build-container-build
