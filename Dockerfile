@@ -22,7 +22,7 @@ RUN adduser --disabled-password --gecos '' builder \
 USER builder
 WORKDIR /home/builder
 
-COPY ./src/bin/* ~/.cabal/bin/
+COPY ./cardano-node/src/bin/* ~/.cabal/bin/
 
 # ENTRY SCRIPT
 
