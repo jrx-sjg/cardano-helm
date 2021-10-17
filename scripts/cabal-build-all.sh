@@ -17,4 +17,4 @@ git checkout ${GIT_COMMIT_TO_BUILD}
 # Build using NixOS
 
 nix-build -A scripts.${BUILD_TARGETS} -o node-local
-./node-local/bin/
+./node-local/bin/cardano-node-mainnet
