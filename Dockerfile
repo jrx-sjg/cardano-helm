@@ -13,7 +13,7 @@ ENV \
 WORKDIR /
 
 RUN apt-get update \
-    && apt-get install -y curl xz-utils git sudo
+    && apt-get install -y curl xz-utils git sudo libsodium-dev
 
 # SETUP Builder USER
 RUN adduser --disabled-password --gecos '' builder \
