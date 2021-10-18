@@ -8,6 +8,8 @@ ENV \
     ENV=/etc/profile \
     USER=builder \
     CNODE_HOME=/opt/cardano/cnode \
+    HOME=/home/builder \
+    PATH=$HOME/.cabal/bin:${PATH} \
     CARDANO_NODE_SOCKET_PATH=$CNODE_HOME/sockets/node0.socket
 
 WORKDIR /
