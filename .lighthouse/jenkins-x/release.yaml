@@ -15,7 +15,9 @@ spec:
           - name: PACKAGES
             value: all
           - name: ENVIRONMENT
-            value: cardano-node    
+            value: cardano-node
+          - name: KANIKO_FLAGS
+            value: "--cache=true --cache-dir=/image-cache"    
           image: uses:jaraxasoftware/jaraxa-pipeline-catalog/tasks/haskell-cabal/release.yaml@versionStream
           name: ""
           resources:

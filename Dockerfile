@@ -34,6 +34,6 @@ ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/f
 
 RUN sudo mkdir -p /opt/cardano/cnode/ \
     && sudo chown -R builder:builder /opt/cardano/cnode/ \
-    && chmod a+x ~/.scripts/*.sh  ~/entrypoint.sh 
+    && sudo chmod a+x ~/.scripts/*.sh  ~/entrypoint.sh 
 
 HEALTHCHECK --start-period=5m --interval=5m --timeout=100s CMD ~/.scripts/healthcheck.sh
