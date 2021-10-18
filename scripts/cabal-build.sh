@@ -6,6 +6,9 @@ set +x
 # executes cabal build all
 # parses executables created from compiler output and copies it to ~./cabal/bin folder.
 
+export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"
+export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"
+
 cabal update -j
 
 git clone https://github.com/input-output-hk/cardano-node.git && cd cardano-node
