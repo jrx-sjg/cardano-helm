@@ -2,16 +2,6 @@ FROM debian
 
 LABEL org.opencontainers.image.source https://github.com/jrx-sjg/cardano-helm
 
-ENV \
-    DEBIAN_FRONTEND=noninteractive \
-    LANG=C.UTF-8 \
-    ENV=/etc/profile \
-    USER=builder \
-    CNODE_HOME=/opt/cardano/cnode \
-    HOME=/home/builder \
-    PATH=$HOME/.cabal/bin:${PATH} \
-    CARDANO_NODE_SOCKET_PATH=$CNODE_HOME/sockets/node0.socket
-
 WORKDIR /
 
 RUN apt-get update \
@@ -25,6 +15,16 @@ RUN adduser --disabled-password --gecos '' builder \
 
 USER builder
 WORKDIR /home/builder/
+
+ENV \
+    DEBIAN_FRONTEND=noninteractive \
+    LANG=C.UTF-8 \
+    ENV=/etc/profile \
+    USER=builder \
+    CNODE_HOME=/opt/cardano/cnode \
+    HOME=/home/builder \
+    PATH=$HOME/.cabal/bin:${PATH} \
+    CARDANO_NODE_SOCKET_PATH=$CNODE_HOME/sockets/node0.socket
 
 COPY ./cardano-node/src/bin/* .cabal/bin/
 
