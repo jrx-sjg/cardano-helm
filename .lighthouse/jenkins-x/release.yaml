@@ -33,11 +33,6 @@ spec:
           resources: {}       
         - name: build-cabal-all
           resources: {}
-          script: |
-            #!/bin/bash
-            source .jx/variables.sh
-            ./scripts/prereqs.sh
-            ./scripts/cabal-build-all.sh
         - name: check-registry
           resources: {}
         - name: build-container-build
