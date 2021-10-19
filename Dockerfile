@@ -26,7 +26,7 @@ WORKDIR /home/builder/
 
 ENV PATH=/home/builder/.cabal/bin:${PATH} 
 
-COPY --from=stage1 /opt/cardano/cnode/ /opt/cardano/cnode/
+COPY /opt/cardano/cnode/ /opt/cardano/cnode/
 COPY ./cardano-node/src/bin/* .cabal/bin/
 
 # ENTRY SCRIPT
