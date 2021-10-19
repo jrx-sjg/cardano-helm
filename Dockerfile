@@ -51,10 +51,11 @@ COPY ./cardano-node/src/bin/* .cabal/bin/
 # ENTRY SCRIPT
 
 ADD ./docker/node/addons/banner.txt .scripts/
-ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/docker/node/addons/guild-topology.sh .scripts/
-ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/docker/node/addons/block_watcher.sh .scripts/
-ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/docker/node/addons/healthcheck.sh .scripts/
-ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/docker/node/addons/entrypoint.sh .
+ADD ./docker/node/addons/entrypoint.sh .
+ADD ./docker/node/addons/guild-topology.sh .scripts/
+ADD ./docker/node/addons/block_watcher.sh .scripts/
+ADD ./docker/node/addons/healthcheck.sh .scripts/
+
 
 RUN sudo chown -R builder:builder /opt/cardano/cnode/ ./ \
     && sudo chmod a+x .scripts/*.sh  ./entrypoint.sh 
