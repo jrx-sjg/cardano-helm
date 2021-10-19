@@ -1,10 +1,10 @@
 FROM debian as stage1
 
 ENV \
-DEBIAN_FRONTEND=noninteractive \
-LANG=C.UTF-8 \
-ENV=/etc/profile \
-USER=root 
+    DEBIAN_FRONTEND=noninteractive \
+    LANG=C.UTF-8 \
+    ENV=/etc/profile \
+    USER=root 
 
 WORKDIR /
 
@@ -17,7 +17,7 @@ RUN set -x && apt update \
   && export BOOTSTRAP_HASKELL_NO_UPGRADE=1 \
   && chmod +x ./prereqs.sh && ./prereqs.sh 
 
-FROM debian as stage2
+FROM stage1 as stage2
 
 LABEL org.opencontainers.image.source https://github.com/jrx-sjg/cardano-helm
 
