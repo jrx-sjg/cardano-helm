@@ -70,6 +70,7 @@ service:
   dbDir: /opt/cardano/cnode/db/
   externalPort: 6060
   internalPort: 6000
+  promPort: 12798
   annotations: {}
   # Add labels to the service
   labels: {}

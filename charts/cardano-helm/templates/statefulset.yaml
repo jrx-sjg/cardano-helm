@@ -84,8 +84,10 @@ spec:
           mountPath: "{{ .Values.service.dbDir }}"   
 {{- end }}    
         ports:
-        - name: http
+        - name: node
           containerPort: {{ .Values.service.internalPort }}
+        - name: prom
+          containerPort: {{ .Values.service.promPort }}
         livenessProbe:
           tcpSocket:
             port: {{ .Values.service.internalPort }}

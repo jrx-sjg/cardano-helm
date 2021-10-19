@@ -1,23 +1,4 @@
-FROM debian as stage1
-
-ENV \
-    DEBIAN_FRONTEND=noninteractive \
-    LANG=C.UTF-8 \
-    ENV=/etc/profile \
-    USER=root 
-
-WORKDIR /
-
-RUN set -x && apt update \
-  && mkdir -p /root/.cabal/bin && mkdir -p /root/.ghcup/bin \
-  && apt install -y  apt-utils wget gnupg apt-utils git\
-  && wget https://raw.githubusercontent.com/cardano-community/guild-operators/master/scripts/cnode-helper-scripts/prereqs.sh \
-  && export SUDO='N' \
-  && export UPDATE_CHECK='N' \
-  && export BOOTSTRAP_HASKELL_NO_UPGRADE=1 \
-  && chmod +x ./prereqs.sh && ./prereqs.sh 
-
-FROM stage1 as stage2
+FROM debian 
 
 LABEL org.opencontainers.image.source https://github.com/jrx-sjg/cardano-helm
 
@@ -32,7 +13,7 @@ ENV \
 WORKDIR /
 
 RUN apt-get update \
-    && apt-get install -y curl xz-utils git sudo libsodium-dev
+    && apt-get install -y curl xz-utils git sudo libsodium-dev vim procps
 
 # SETUP Builder USER
 RUN adduser --disabled-password --gecos '' builder \
