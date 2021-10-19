@@ -1,6 +1,4 @@
-FROM debian
-
-LABEL org.opencontainers.image.source https://github.com/jrx-sjg/cardano-helm
+FROM debian as stage1
 
 ENV \
     DEBIAN_FRONTEND=noninteractive \
@@ -18,6 +16,10 @@ RUN set -x && apt update \
   && export UPDATE_CHECK='N' \
   && export BOOTSTRAP_HASKELL_NO_UPGRADE=1 \
   && chmod +x ./prereqs.sh && ./prereqs.sh 
+
+FROM stage1 as stage2
+
+LABEL org.opencontainers.image.source https://github.com/jrx-sjg/cardano-helm
 
 ENV \
     DEBIAN_FRONTEND=noninteractive \
@@ -43,17 +45,16 @@ WORKDIR /home/builder/
 
 ENV PATH=/home/builder/.cabal/bin:${PATH} 
 
-COPY /opt/cardano/cnode/ /opt/cardano/cnode/
+COPY --from=stage1 /opt/cardano/cnode/ /opt/cardano/cnode/
 COPY ./cardano-node/src/bin/* .cabal/bin/
 
 # ENTRY SCRIPT
 
 ADD ./docker/node/addons/banner.txt .scripts/
-ADD ./docker/node/addons/entrypoint.sh .
 ADD ./docker/node/addons/guild-topology.sh .scripts/
 ADD ./docker/node/addons/block_watcher.sh .scripts/
 ADD ./docker/node/addons/healthcheck.sh .scripts/
-
+ADD ./docker/node/addons/entrypoint.sh .
 
 RUN sudo chown -R builder:builder /opt/cardano/cnode/ ./ \
     && sudo chmod a+x .scripts/*.sh  ./entrypoint.sh 
