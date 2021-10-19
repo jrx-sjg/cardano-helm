@@ -1,4 +1,6 @@
-FROM debian as stage1
+FROM debian
+
+LABEL org.opencontainers.image.source https://github.com/jrx-sjg/cardano-helm
 
 ENV \
     DEBIAN_FRONTEND=noninteractive \
@@ -16,10 +18,6 @@ RUN set -x && apt update \
   && export UPDATE_CHECK='N' \
   && export BOOTSTRAP_HASKELL_NO_UPGRADE=1 \
   && chmod +x ./prereqs.sh && ./prereqs.sh 
-
-FROM stage1 as stage2
-
-LABEL org.opencontainers.image.source https://github.com/jrx-sjg/cardano-helm
 
 ENV \
     DEBIAN_FRONTEND=noninteractive \
@@ -45,7 +43,7 @@ WORKDIR /home/builder/
 
 ENV PATH=/home/builder/.cabal/bin:${PATH} 
 
-COPY --from=stage1 /opt/cardano/cnode/ /opt/cardano/cnode/
+COPY /opt/cardano/cnode/ /opt/cardano/cnode/
 COPY ./cardano-node/src/bin/* .cabal/bin/
 
 # ENTRY SCRIPT
