@@ -89,16 +89,14 @@ spec:
         - name: http
           containerPort: {{ .Values.service.internalPort }}
         livenessProbe:
-          httpGet:
-            path: {{ .Values.livenessProbe.probePath | default .Values.probePath }}
+          tcpSocket:
             port: {{ .Values.service.internalPort }}
           initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
           periodSeconds: {{ .Values.livenessProbe.periodSeconds }}
           successThreshold: {{ .Values.livenessProbe.successThreshold }}
           timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds }}
         readinessProbe:
-          httpGet:
-            path: {{ .Values.readinessProbe.probePath | default .Values.probePath }}
+          tcpSocket:
             port: {{ .Values.service.internalPort }}
           initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
           periodSeconds: {{ .Values.readinessProbe.periodSeconds }}

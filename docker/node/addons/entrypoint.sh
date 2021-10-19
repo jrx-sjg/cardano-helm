@@ -4,9 +4,7 @@ trap 'killall -s SIGTERM cardano-node' SIGINT SIGTERM
 # "docker run --init" to enable the docker init proxy
 # To manually test: docker kill -s SIGTERM container
 
-head -n 8 ~/.scripts/banner.txt
-
-. ~/.bashrc > /dev/null 2>&1
+head -n 16 ~/.scripts/banner.txt
 
 echo "NETWORK: $NETWORK $POOL_NAME $TOPOLOGY";
 
