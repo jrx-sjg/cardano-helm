@@ -54,6 +54,14 @@ spec:
 {{- else }}
       serviceAccountName: {{ template "name" . }}
 {{- end }}
+{{- if .Values.persistence }}
+      initContainers:
+      - name: dir-data-permission-fix
+        image: busybox
+        command: ["/bin/chown","-R","{{ .Values.service.user }}", "{{ .Values.service.dbDir }}"]
+        volumeMounts:
+        - name: {{ template "name" . }}-data
+          mountPath: "{{ .Values.service.dbDir }}" 
 {{- end }}
       containers:
       - name: {{ .Chart.Name }}

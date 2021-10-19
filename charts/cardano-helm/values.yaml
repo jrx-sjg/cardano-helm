@@ -65,6 +65,7 @@ canary:
 service:
   name: cardano-node
   type: ClusterIP
+  user: builder
   configDir: /opt/cardano/cnode/priv/files/
   dbDir: /opt/cardano/cnode/db/
   externalPort: 6060
