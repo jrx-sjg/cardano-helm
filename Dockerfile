@@ -41,3 +41,5 @@ RUN sudo mkdir -p /opt/cardano/cnode/ \
     && sudo chmod a+x .scripts/*.sh  ./entrypoint.sh 
 
 HEALTHCHECK --start-period=5m --interval=5m --timeout=100s CMD ~/.scripts/healthcheck.sh
+
+ENTRYPOINT ["./entrypoint.sh"]
