@@ -45,6 +45,7 @@ WORKDIR /home/builder/
 
 ENV PATH=/home/builder/.cabal/bin:${PATH} 
 
+COPY --from=stage1 /opt/cardano/cnode/ /opt/cardano/cnode/
 COPY ./cardano-node/src/bin/* .cabal/bin/
 
 # ENTRY SCRIPT
@@ -55,8 +56,7 @@ ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/f
 ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/docker/node/addons/healthcheck.sh .scripts/
 ADD https://raw.githubusercontent.com/cardano-community/guild-operators/master/files/docker/node/addons/entrypoint.sh .
 
-RUN sudo mkdir -p /opt/cardano/cnode/ \
-    && sudo chown -R builder:builder /opt/cardano/cnode/ ./ \
+RUN sudo chown -R builder:builder /opt/cardano/cnode/ ./ \
     && sudo chmod a+x .scripts/*.sh  ./entrypoint.sh 
 
 HEALTHCHECK --start-period=5m --interval=5m --timeout=100s CMD ~/.scripts/healthcheck.sh
