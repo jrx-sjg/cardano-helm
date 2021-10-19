@@ -36,7 +36,7 @@ ADD ./docker/node/addons/block_watcher.sh .scripts/
 ADD ./docker/node/addons/healthcheck.sh .scripts/
 ADD ./docker/node/addons/entrypoint.sh .
 
-RUN sudo chown -R builder:builder /opt/cardano/cnode/ ./ \
+RUN sudo chown -R builder:builder ./ \
     && sudo chmod a+x .scripts/*.sh  ./entrypoint.sh 
 
 HEALTHCHECK --start-period=5m --interval=5m --timeout=100s CMD ~/.scripts/healthcheck.sh
