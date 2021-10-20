@@ -63,7 +63,6 @@ canary:
   gatewayLabels: {}
 
 service:
-  name: cardano-node
   type: ClusterIP
   user: builder
   configDir: /opt/cardano/files/
@@ -83,7 +82,7 @@ probePath: /
 livenessProbe:
   initialDelaySeconds: 3600
   periodSeconds: 160
-  successThreshold: 3
+  successThreshold: 1
   timeoutSeconds: 100
   # Optional distinct liveness probe path, if empty the probePath is used
   probePath: ""
