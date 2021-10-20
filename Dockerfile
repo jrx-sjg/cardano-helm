@@ -26,25 +26,26 @@ WORKDIR /home/builder/
 
 ENV PATH=/home/builder/.cabal/bin:${PATH} 
 
-COPY ./cardano-node/src/bin/* .cabal/bin/
+ADD ./cardano-node/src/bin/* .cabal/bin/
 
 RUN sudo mkdir -p /opt/cardano/scripts \
     && sudo mkdir -p /opt/cardano/archive \
     && sudo mkdir -p /opt/cardano/sockets \
     && sudo mkdir -p /opt/cardano/logs \
     && sudo mkdir -p /opt/cardano/blocklog \
-    && sudo chown -R builder.builder /opt/cardano/*
+    && sudo mkdir -p /opt/cardano/files 
 
 # ENTRY SCRIPT
 
+ADD ./docker/node/config/ /opt/cardano/files/
+ADD ./docker/node/addons/cnode.sh /opt/cardano/scripts/
 ADD ./docker/node/addons/banner.txt .scripts/
 ADD ./docker/node/addons/guild-topology.sh .scripts/
 ADD ./docker/node/addons/block_watcher.sh .scripts/
-ADD ./docker/node/addons/healthcheck.sh .scripts/
-ADD ./docker/node/addons/cnode.sh /opt/cardano/scripts/
+ADD ./docker/node/addons/healthcheck.sh .scripts/ 
 ADD ./docker/node/addons/entrypoint.sh .
 
-RUN sudo chown -R builder:builder ./ \
+RUN sudo chown -R builder:builder ./ /opt/cardano/* \
     && sudo chmod a+x .scripts/*.sh /opt/cardano/scripts/*.sh ./entrypoint.sh 
 
 HEALTHCHECK --start-period=5m --interval=5m --timeout=100s CMD ~/.scripts/healthcheck.sh

@@ -1,14 +1,3 @@
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: {{ template "name" . }}-config-files
-  labels:
-    draft: {{ default "draft-app" .Values.draft }}
-    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
-data: 
-{{ (.Files.Glob "files/*").AsConfig | indent 2 }}
---- 
 apiVersion: v1
 kind: ConfigMap
 metadata:
