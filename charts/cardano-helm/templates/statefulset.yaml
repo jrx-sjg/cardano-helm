@@ -77,7 +77,8 @@ spec:
 {{- if .Values.service.configDir }}
         volumeMounts:
         - name: {{ template "name" . }}-config
-          mountPath: "{{ .Values.service.configDir }}"
+          mountPath: {{ .Values.service.configDir }}/{{ .Values.service.configFile }}
+          subPath: {{ .Values.service.configFile }}
 {{- end }}
 {{- if .Values.persistence }}
         - name: {{ template "name" . }}-data
@@ -115,7 +116,7 @@ spec:
       volumes:
       - name: "{{ template "name" . }}-config"
         configMap:
-          name: "{{ template "name" . }}-config"
+          name: "{{ template "name" . }}-config-main"
       - name: "{{ template "name" . }}-data"
         persistentVolumeClaim:
           claimName: "{{ template "name" . }}-data"               

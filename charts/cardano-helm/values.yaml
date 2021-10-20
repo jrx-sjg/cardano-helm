@@ -66,6 +66,7 @@ service:
   type: ClusterIP
   user: builder
   configDir: /opt/cardano/files/
+  connfigFile: mainnet-config.json
   dbDir: /opt/cardano/db/
   externalPort: 6060
   internalPort: 6000
