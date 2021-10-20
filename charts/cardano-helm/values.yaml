@@ -66,8 +66,8 @@ service:
   name: cardano-node
   type: ClusterIP
   user: builder
-  configDir: /opt/cardano/cnode/priv/files/
-  dbDir: /opt/cardano/cnode/db/
+  configDir: /opt/cardano/files/
+  dbDir: /opt/cardano/db/
   externalPort: 6060
   internalPort: 6000
   promPort: 12798

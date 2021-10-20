@@ -12,3 +12,4 @@ git checkout 66f017f1
 ./autogen.sh
 ./configure && make
 make install
+
