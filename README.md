@@ -15,7 +15,7 @@ For local:
 
 Docker engine
 
-# Running in local
+# Running locally with docker
 
 ```
 git clone https://github.com/jrx-sjg/cardano-helm.git
