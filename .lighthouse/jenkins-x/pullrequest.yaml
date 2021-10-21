@@ -11,7 +11,7 @@ spec:
       taskSpec:
         metadata: {}
         stepTemplate:
-          image: uses:jaraxasoftware/jaraxa-pipeline-catalog/tasks/helm/pullrequest.yaml@versionStream
+          image: uses:jaraxasoftware/jaraxa-pipeline-catalog/tasks/haskell-cabal/pullrequest.yaml@versionStream
           name: ""
           resources:
             requests:
@@ -24,6 +24,12 @@ spec:
           resources: {}
         - name: jx-variables
           resources: {}
+        - name: check-cabal
+          resources: {}
+        - name: check-registry
+          resources: {}
+        - name: check-dockerfile
+          resources: {}                                             
         - name: build-helm-build
           resources: {}
   podTemplate: {}

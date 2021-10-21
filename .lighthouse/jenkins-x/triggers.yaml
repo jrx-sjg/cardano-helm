@@ -3,13 +3,13 @@ kind: TriggerConfig
 spec:
   presubmits:
   - name: pr
-    context: "pr"
+    context: "PR Verify"
     always_run: true
     optional: false
     source: "pullrequest.yaml"
   postsubmits:
   - name: release
-    context: "release"
+    context: "Release"
     source: "release.yaml"
     branches:
     - ^main$

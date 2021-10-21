@@ -1,4 +1,4 @@
-FROM debian 
+FROM debian:11
 
 LABEL org.opencontainers.image.source https://github.com/jrx-sjg/cardano-helm
 
@@ -26,7 +26,7 @@ WORKDIR /home/builder/
 
 ENV PATH=/home/builder/.cabal/bin:${PATH} 
 
-ADD ./cardano-node/src/bin/* .cabal/bin/
+COPY ./cardano-node/src/bin/* .cabal/bin/
 
 RUN sudo mkdir -p /opt/cardano/scripts \
     && sudo mkdir -p /opt/cardano/archive \
@@ -37,13 +37,13 @@ RUN sudo mkdir -p /opt/cardano/scripts \
 
 # ENTRY SCRIPT
 
-ADD ./docker/node/config/ /opt/cardano/files/
-ADD ./docker/node/addons/cnode.sh /opt/cardano/scripts/
-ADD ./docker/node/addons/banner.txt .scripts/
-ADD ./docker/node/addons/guild-topology.sh .scripts/
-ADD ./docker/node/addons/block_watcher.sh .scripts/
-ADD ./docker/node/addons/healthcheck.sh .scripts/ 
-ADD ./docker/node/addons/entrypoint.sh .
+COPY ./docker/node/config/ /opt/cardano/files/
+COPY ./docker/node/addons/cnode.sh /opt/cardano/scripts/
+COPY ./docker/node/addons/banner.txt .scripts/
+COPY ./docker/node/addons/guild-topology.sh .scripts/
+COPY ./docker/node/addons/block_watcher.sh .scripts/
+COPY ./docker/node/addons/healthcheck.sh .scripts/ 
+COPY ./docker/node/addons/entrypoint.sh .
 
 RUN sudo chown -R builder:builder ./ /opt/cardano/* \
     && sudo chmod a+x .scripts/*.sh /opt/cardano/scripts/*.sh ./entrypoint.sh 
