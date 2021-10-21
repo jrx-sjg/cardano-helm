@@ -12,8 +12,6 @@ spec:
         metadata: {}
         stepTemplate:
           env:
-          - name: PACKAGES
-            value: all
           - name: ENVIRONMENT
             value: cardano-node
           - name: KANIKO_FLAGS
