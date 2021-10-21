@@ -1,4 +1,4 @@
-# Helm implementation of Cardano Node
+## Helm implementation of Cardano Node
 Repository for Cardano node deployment using helm.
 
 Custom images built with tekton pipelines and also custom haskell-cabal tekton builder. 
