@@ -37,12 +37,12 @@ RUN sudo mkdir -p /opt/cardano/scripts \
 
 # ENTRY SCRIPT
 
-COPY ./docker/node/addons/cnode.sh /opt/cardano/scripts/
 COPY ./docker/node/config/ /opt/cardano/files/
+COPY ./docker/node/addons/cnode.sh /opt/cardano/scripts/
 COPY ./docker/node/addons/banner.txt .scripts/
 COPY ./docker/node/addons/entrypoint.sh .
 
 RUN sudo chown -R builder:builder ./ /opt/cardano/* \
-    && sudo chmod a+x .scripts/*.sh /opt/cardano/scripts/*.sh ./entrypoint.sh 
+    && sudo chmod a+x /opt/cardano/scripts/*.sh ./entrypoint.sh 
 
 ENTRYPOINT ["./entrypoint.sh"]
