@@ -2,14 +2,14 @@ apiVersion: config.lighthouse.jenkins-x.io/v1alpha1
 kind: TriggerConfig
 spec:
   presubmits:
-  - name: "Pull Request Verify"
-    context: "pr"
+  - name: pr
+    context: "PR Verify"
     always_run: true
     optional: false
     source: "pullrequest.yaml"
   postsubmits:
-  - name: Release
-    context: "release"
+  - name: release
+    context: "Release"
     source: "release.yaml"
     branches:
     - ^main$
