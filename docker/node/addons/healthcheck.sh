@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source /opt/cardano/cnode/scripts/env
+source /opt/cardano/scripts/env
 
 CCLI=$(which cardano-cli)
 
