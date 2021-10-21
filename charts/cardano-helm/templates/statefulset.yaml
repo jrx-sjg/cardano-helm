@@ -91,7 +91,7 @@ spec:
           containerPort: {{ .Values.service.promPort }}
         livenessProbe:
           tcpSocket:
-            port: {{ .Values.service.internalPort }}
+            port: {{ .Values.service.promPort }}
           initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
           periodSeconds: {{ .Values.livenessProbe.periodSeconds }}
           successThreshold: {{ .Values.livenessProbe.successThreshold }}
