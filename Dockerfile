@@ -37,17 +37,12 @@ RUN sudo mkdir -p /opt/cardano/scripts \
 
 # ENTRY SCRIPT
 
-COPY ./docker/node/config/ /opt/cardano/files/
 COPY ./docker/node/addons/cnode.sh /opt/cardano/scripts/
+COPY ./docker/node/config/ /opt/cardano/files/
 COPY ./docker/node/addons/banner.txt .scripts/
-COPY ./docker/node/addons/guild-topology.sh .scripts/
-COPY ./docker/node/addons/block_watcher.sh .scripts/
-COPY ./docker/node/addons/healthcheck.sh .scripts/ 
 COPY ./docker/node/addons/entrypoint.sh .
 
 RUN sudo chown -R builder:builder ./ /opt/cardano/* \
     && sudo chmod a+x .scripts/*.sh /opt/cardano/scripts/*.sh ./entrypoint.sh 
-
-HEALTHCHECK --start-period=5m --interval=5m --timeout=100s CMD ~/.scripts/healthcheck.sh
 
 ENTRYPOINT ["./entrypoint.sh"]
