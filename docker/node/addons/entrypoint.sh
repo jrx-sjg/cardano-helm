@@ -11,7 +11,7 @@ echo "NETWORK: $NETWORK $POOL_NAME $TOPOLOGY";
 [[ -z "${CNODE_HOME}" ]] && export CNODE_HOME=/opt/cardano 
 [[ -z "${CNODE_PORT}" ]] && export CNODE_PORT=6000
 
-echo "NODE: $HOSTNAME - Port:$CNODE_PORT ;
+echo "NODE: $HOSTNAME - Port:$CNODE_PORT - $POOL_NAME";
 cardano-node --version;
 
 exec $CNODE_HOME/scripts/cnode.sh
