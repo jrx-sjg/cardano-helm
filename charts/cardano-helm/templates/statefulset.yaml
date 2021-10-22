@@ -61,6 +61,17 @@ spec:
         fsGroup: {{ .Values.persistence.userId }}
         fsGroupChangePolicy: "OnRootMismatch"
 {{- end }}
+{{- if .Values.persistence }}
+      initContainers:
+      - name: remove-lost-n-found
+        image: busybox
+        imagePullPolicy: IfNotPresent
+        command: ["sh", "-c", "rm -rf {{ .Values.service.dbDir }}lost+found"]
+        resources: {}
+        volumeMounts:
+        - name: {{ template "name" . }}-data
+          mountPath: "{{ .Values.service.dbDir }}"
+{{- end }}
       containers:
       - name: {{ .Chart.Name }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
