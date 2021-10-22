@@ -13,7 +13,10 @@ ENV \
 WORKDIR /
 
 RUN apt-get update \
-    && apt-get install -y curl xz-utils git sudo libsodium-dev vim procps
+    && apt-get install -y xz-utils sudo vim procps --no-install-recommends
+
+COPY ./scripts/prereqs.sh .
+RUN /prereqs.sh
 
 # SETUP Builder USER
 RUN adduser --disabled-password --gecos '' builder \
