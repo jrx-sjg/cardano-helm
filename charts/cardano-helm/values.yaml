@@ -82,18 +82,18 @@ resources:
     memory: 128Mi
 probePath: /
 livenessProbe:
-  initialDelaySeconds: 3600
-  periodSeconds: 160
+  initialDelaySeconds: 300
+  periodSeconds: 120
   successThreshold: 1
-  timeoutSeconds: 100
+  timeoutSeconds: 30
   # Optional distinct liveness probe path, if empty the probePath is used
   probePath: ""
 readinessProbe:
-  initialDelaySeconds: 3600
+  initialDelaySeconds: 1800
   failureThreshold: 3
-  periodSeconds: 60
+  periodSeconds: 360
   successThreshold: 2
-  timeoutSeconds: 100
+  timeoutSeconds: 120
   # Optional distinct readiness probe path, if empty the probePath is used
   probePath: ""
 
