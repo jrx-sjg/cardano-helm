@@ -46,7 +46,7 @@ spec:
           script: |
             #!/usr/bin/env sh
             source .jx/variables.sh
-            jx promote -b --env $ENVIRONMENT --timeout 16m --no-poll                    
+            jx promote -b --env $ENVIRONMENT --timeout 16m --version $VERSION-$BUILD_ID --no-poll                    
   podTemplate: {}
   serviceAccountName: tekton-bot
   timeout: 12h0m0s
