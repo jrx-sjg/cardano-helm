@@ -27,7 +27,10 @@ RUN adduser --disabled-password --gecos '' builder \
 USER builder
 WORKDIR /home/builder/
 
-ENV PATH=/home/builder/.cabal/bin:${PATH} 
+ENV PATH=/home/builder/.cabal/bin:${PATH} \
+    LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH" \
+    PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"  
+
 
 COPY ./cardano-node/src/bin/* .cabal/bin/
 

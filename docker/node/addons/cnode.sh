@@ -32,10 +32,6 @@ IP_VERSION=4                                            # The IP version to use 
 #POOL_FOLDER="${CNODE_HOME}/priv/pool"                  # Root folder for Pools
 #POOL_NAME=""                                           # Set the pool's name to run node as a core node (the name, NOT the ticker, ie folder name)
 
-##### Libsodium export
-
-LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"
-PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"  
 
 ######################################
 # Do NOT modify code below           #
