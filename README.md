@@ -32,3 +32,23 @@ mkdir db/
 docker pull ghcr.io/jrx-sjg/cardano-helm:$VERSION-$BUILD_ID
 docker run -ti -e NETWORK=mainnet -v $PWD/docker/node/config/:/opt/cardano/files -v $PWD/db/:/opt/cardano/db ghcr.io/jrx-sjg/cardano-helm:$VERSION-$BUILD_ID
 ```
+
+## Chart Repository
+
+[Helm](https://helm.sh) must be installed to use the charts.
+Please refer to Helm's [documentation](https://helm.sh/docs/) to get started.
+
+### Install the chart
+
+Once Helm is set up properly, add the repo as follows:
+
+    helm repo add <<myrepo>> https://jrx-sjg.github.io/cardano-helm/
+
+you can search the charts via:
+
+    helm install cardano-helm <<myrepo>>/cardano-helm --namespace <<mynamespace>> --values <<myvalues.yaml>>
+
+
+## View the YAML
+
+You can have a look at the underlying charts YAML at: [index.yaml](index.yaml)
