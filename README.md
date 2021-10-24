@@ -1,5 +1,6 @@
 # Helm implementation of Cardano Node
 
+![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/jrx-sjg/cardano-helm)
 ![GitHub branch checks state](https://img.shields.io/github/checks-status/jrx-sjg/cardano-helm/main)
 [![GitHub issues](https://img.shields.io/github/issues/jrx-sjg/cardano-helm)](https://github.com/jrx-sjg/cardano-helm/issues)
 [![GitHub stars](https://img.shields.io/github/stars/jrx-sjg/cardano-helm)](https://github.com/jrx-sjg/cardano-helm/stargazers?style=social)
