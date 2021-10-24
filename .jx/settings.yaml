@@ -2,5 +2,5 @@ apiVersion: core.jenkins-x.io/v4beta1
 kind: Settings
 spec:
   destination:
-    chartRepository: https://github.com/jrx-sjg/cardano-helm/charts/
+    chartRepository: https://github.com/jrx-sjg/cardano-helm.git
     chartKind: pages  
