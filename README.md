@@ -1,11 +1,16 @@
 # Helm implementation of Cardano Node
+
+[![Build Status][github-actions-img]][github-actions]
+[![GPL-3 licensed][license-img]][license]
+[![GitHub release][release-img]][release]
+![Github downloads][downloads-img]
 Repository for Cardano node deployment using helm.
 
 Custom images built with tekton pipelines and also custom haskell-cabal tekton builder. 
 
 Work in progress. The goal is to implement a fully working API using Helm + Helmfiles and/or ArgoCD
 
-# Requirements
+## Requirements
 
 A kubernetes cluster on version 1.20+
 
@@ -15,9 +20,9 @@ For local:
 
 Docker engine
 
-# Running locally with docker
+## Running locally with docker
 
-```
+```bash
 git clone https://github.com/jrx-sjg/cardano-helm.git
 
 mkdir db/
