@@ -8,11 +8,11 @@ Please refer to Helm's [documentation](https://helm.sh/docs/) to get started.
 
 Once Helm is set up properly, add the repo as follows:
 
-    helm repo add myrepo https://jrx-sjg.github.io/cardano-helm/
+    helm repo add <<myrepo>> https://jrx-sjg.github.io/cardano-helm/
 
 you can search the charts via:
 
-    helm search repo myfilter
+    helm search repo <<mychart>>
 
 ## View the YAML
 
