@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  cardano-helm:
+  - apiVersion: v1
+    appVersion: 1.30.1-1635081804118
+    created: "2021-10-24T14:06:26.649175903Z"
+    description: A Helm chart for Kubernetes
+    digest: 440767c97fcba15a34890efc5731241af08407a18cefedda2fe97e47c187c25b
+    icon: https://raw.githubusercontent.com/cdfoundation/artwork/master/jenkinsx/icon/color/jenkinsx-icon-color.png
+    name: cardano-helm
+    urls:
+    - cardano-helm-1.30.1-1635081804118.tgz
+    version: 1.30.1-1635081804118
+generated: "2021-10-24T14:06:26.647991432Z"
