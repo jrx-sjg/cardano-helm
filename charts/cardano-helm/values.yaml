@@ -55,7 +55,6 @@ canary:
         threshold: 500
         interval: "1m"
   # The host is using Istio Gateway or the underlying ingress mechanism
-  # This value is defaulted from the environments jx-requirements.yml ingress configuration
   host: ""
   # Add labels to the canary
   labels: {}

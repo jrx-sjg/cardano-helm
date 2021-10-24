@@ -22,6 +22,6 @@ git clone https://github.com/jrx-sjg/cardano-helm.git
 
 mkdir db/
 
-docker pull ghcr.io/jrx-sjg/cardano-helm:latest
-docker run -ti -e NETWORK=mainnet -v $PWD/docker/node/config/:/opt/cardano/files -v $PWD/db/:/opt/cardano/db ghcr.io/jrx-sjg/cardano-helm:latest
+docker pull ghcr.io/jrx-sjg/cardano-helm:$VERSION-$BUILD_ID
+docker run -ti -e NETWORK=mainnet -v $PWD/docker/node/config/:/opt/cardano/files -v $PWD/db/:/opt/cardano/db ghcr.io/jrx-sjg/cardano-helm:$VERSION-$BUILD_ID
 ```
