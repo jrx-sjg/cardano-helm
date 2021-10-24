@@ -14,13 +14,13 @@ Work in progress. The goal is to implement a fully working API using Helm + Helm
 
 ## Requirements
 
-A kubernetes cluster on version 1.20+
+* Kubernetes cluster on version 1.20+
 
-Helm 3
+* Helm 3
 
 For local:
 
-Docker engine
+* Docker engine
 
 ## Running locally with docker
 
