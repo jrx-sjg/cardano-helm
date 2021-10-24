@@ -1,9 +1,10 @@
 # Helm implementation of Cardano Node
 
-[![Build Status][github-actions-img]][github-actions]
-[![GPL-3 licensed][license-img]][license]
-[![GitHub release][release-img]][release]
-![Github downloads][downloads-img]
+![GitHub branch checks state](https://img.shields.io/github/checks-status/jrx-sjg/cardano-helm/main)
+[![GitHub issues](https://img.shields.io/github/issues/jrx-sjg/cardano-helm)](https://github.com/jrx-sjg/cardano-helm/issues)
+[![GitHub stars](https://img.shields.io/github/stars/jrx-sjg/cardano-helm)](https://github.com/jrx-sjg/cardano-helm/stargazers?style=social)
+[![GitHub license](https://img.shields.io/github/license/jrx-sjg/cardano-helm)](https://github.com/jrx-sjg/cardano-helm/blob/main/LICENSE)
+
 Repository for Cardano node deployment using helm.
 
 Custom images built with tekton pipelines and also custom haskell-cabal tekton builder. 
