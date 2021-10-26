@@ -2,8 +2,18 @@ apiVersion: v1
 entries:
   cardano-helm:
   - apiVersion: v1
+    appVersion: 1.30.1-1635234674239
+    created: "2021-10-26T08:35:51.778514523Z"
+    description: A Helm chart for Kubernetes
+    digest: 9ea4db0b4f05be50761ef55116e210f68fda8cde1ca2b6f8224947ff422e80e2
+    icon: https://raw.githubusercontent.com/cdfoundation/artwork/master/jenkinsx/icon/color/jenkinsx-icon-color.png
+    name: cardano-helm
+    urls:
+    - cardano-helm-1.30.1-1635234674239.tgz
+    version: 1.30.1-1635234674239
+  - apiVersion: v1
     appVersion: 1.30.1-1635095003634
-    created: "2021-10-24T17:49:58.556308048Z"
+    created: "2021-10-26T08:35:51.77738887Z"
     description: A Helm chart for Kubernetes
     digest: 63532cad9c0c4e40466249ee926e2e6bdfe1f118f16a3f8b2fc6366739da0c9f
     icon: https://raw.githubusercontent.com/cdfoundation/artwork/master/jenkinsx/icon/color/jenkinsx-icon-color.png
@@ -13,7 +23,7 @@ entries:
     version: 1.30.1-1635095003634
   - apiVersion: v1
     appVersion: 1.30.1-1635090165739
-    created: "2021-10-24T17:49:58.555019023Z"
+    created: "2021-10-26T08:35:51.776359677Z"
     description: A Helm chart for Kubernetes
     digest: 29f2e37ea3a9d23b42a418546f8fcd83b885fa7e7d18204b7dcc76efe2f50b0a
     icon: https://raw.githubusercontent.com/cdfoundation/artwork/master/jenkinsx/icon/color/jenkinsx-icon-color.png
@@ -23,7 +33,7 @@ entries:
     version: 1.30.1-1635090165739
   - apiVersion: v1
     appVersion: 1.30.1-1635081804118
-    created: "2021-10-24T17:49:58.553456682Z"
+    created: "2021-10-26T08:35:51.774740833Z"
     description: A Helm chart for Kubernetes
     digest: 440767c97fcba15a34890efc5731241af08407a18cefedda2fe97e47c187c25b
     icon: https://raw.githubusercontent.com/cdfoundation/artwork/master/jenkinsx/icon/color/jenkinsx-icon-color.png
@@ -31,4 +41,4 @@ entries:
     urls:
     - cardano-helm-1.30.1-1635081804118.tgz
     version: 1.30.1-1635081804118
-generated: "2021-10-24T17:49:58.551151161Z"
+generated: "2021-10-26T08:35:51.772932331Z"
