@@ -98,7 +98,7 @@ readinessProbe:
 
 persistence:
   class: do-block-storage
-  size: 20Gi
+  size: 40Gi
   userId: 1000
 
 # custom ingress annotations on this service
