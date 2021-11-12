@@ -12,6 +12,8 @@ spec:
         metadata: {}
         stepTemplate:
           env:
+          - name: ARTIFACT
+            value: ./cardano-node/src/bin/cardano-node
           - name: PACKAGES
             value: all
           - name: ENVIRONMENT
@@ -39,6 +41,8 @@ spec:
           resources: {}                
         - name: promote-changelog
           resources: {}
+        - name: upload-artifacts-release
+          resources: {}          
         - name: promote-helm-release
           resources: {}
         - name: promote-jx-promote
