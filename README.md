@@ -32,7 +32,6 @@ mkdir db/
 docker pull ghcr.io/jrx-sjg/cardano-helm:$VERSION-$BUILD_ID
 docker run -ti -e NETWORK=mainnet -v $PWD/docker/node/config/:/opt/cardano/files -v $PWD/db/:/opt/cardano/db ghcr.io/jrx-sjg/cardano-helm:$VERSION-$BUILD_ID
 ```
-
 ## Install the chart
 
 [Helm](https://helm.sh) must be installed to use the charts.
