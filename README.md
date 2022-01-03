@@ -45,6 +45,6 @@ you can search the charts via:
 
     helm install cardano-helm <<myrepo>>/cardano-helm --namespace <<mynamespace>> --values <<myvalues.yaml>>
 
-### View the YAML
+## View the YAML
 
 You can have a look at the underlying charts YAML at: [index.yaml](index.yaml)
